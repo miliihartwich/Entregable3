@@ -1,0 +1,142 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> query
+Rule 1     query -> TRAEME TODO DE_LA_TABLA table_name DONDE condition
+Rule 2     table_name -> IDENTIFIER
+Rule 3     condition -> IDENTIFIER EN_ESTO list_values
+Rule 4     list_values -> LPAREN IDENTIFIER RPAREN
+
+Terminals, with rules where they appear
+
+DE_LA_TABLA          : 1
+DONDE                : 1
+EN_ESTO              : 3
+IDENTIFIER           : 2 3 4
+LPAREN               : 4
+RPAREN               : 4
+TODO                 : 1
+TRAEME               : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+condition            : 1
+list_values          : 3
+query                : 0
+table_name           : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . query
+    (1) query -> . TRAEME TODO DE_LA_TABLA table_name DONDE condition
+
+    TRAEME          shift and go to state 2
+
+    query                          shift and go to state 1
+
+state 1
+
+    (0) S' -> query .
+
+
+
+state 2
+
+    (1) query -> TRAEME . TODO DE_LA_TABLA table_name DONDE condition
+
+    TODO            shift and go to state 3
+
+
+state 3
+
+    (1) query -> TRAEME TODO . DE_LA_TABLA table_name DONDE condition
+
+    DE_LA_TABLA     shift and go to state 4
+
+
+state 4
+
+    (1) query -> TRAEME TODO DE_LA_TABLA . table_name DONDE condition
+    (2) table_name -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 6
+
+    table_name                     shift and go to state 5
+
+state 5
+
+    (1) query -> TRAEME TODO DE_LA_TABLA table_name . DONDE condition
+
+    DONDE           shift and go to state 7
+
+
+state 6
+
+    (2) table_name -> IDENTIFIER .
+
+    DONDE           reduce using rule 2 (table_name -> IDENTIFIER .)
+
+
+state 7
+
+    (1) query -> TRAEME TODO DE_LA_TABLA table_name DONDE . condition
+    (3) condition -> . IDENTIFIER EN_ESTO list_values
+
+    IDENTIFIER      shift and go to state 9
+
+    condition                      shift and go to state 8
+
+state 8
+
+    (1) query -> TRAEME TODO DE_LA_TABLA table_name DONDE condition .
+
+    $end            reduce using rule 1 (query -> TRAEME TODO DE_LA_TABLA table_name DONDE condition .)
+
+
+state 9
+
+    (3) condition -> IDENTIFIER . EN_ESTO list_values
+
+    EN_ESTO         shift and go to state 10
+
+
+state 10
+
+    (3) condition -> IDENTIFIER EN_ESTO . list_values
+    (4) list_values -> . LPAREN IDENTIFIER RPAREN
+
+    LPAREN          shift and go to state 12
+
+    list_values                    shift and go to state 11
+
+state 11
+
+    (3) condition -> IDENTIFIER EN_ESTO list_values .
+
+    $end            reduce using rule 3 (condition -> IDENTIFIER EN_ESTO list_values .)
+
+
+state 12
+
+    (4) list_values -> LPAREN . IDENTIFIER RPAREN
+
+    IDENTIFIER      shift and go to state 13
+
+
+state 13
+
+    (4) list_values -> LPAREN IDENTIFIER . RPAREN
+
+    RPAREN          shift and go to state 14
+
+
+state 14
+
+    (4) list_values -> LPAREN IDENTIFIER RPAREN .
+
+    $end            reduce using rule 4 (list_values -> LPAREN IDENTIFIER RPAREN .)
+
