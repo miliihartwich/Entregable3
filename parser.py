@@ -88,13 +88,13 @@ def translate(query, direction='USQL_to_SQL'):
 #Verificación
 # Traducción de USQL a SQL
 if __name__ == '__main__':
-    print("Traducción de USQL a SQL de la consulta 'TRAEME TODO DE LA TABLA users DONDE age EN ESTO (18)': \n")
+    print("Traducción de USQL a SQL de la consulta 'TRAEME TODO DE LA TABLA users DONDE age EN ESTO (18)':")
     usql_query = "TRAEME TODO DE LA TABLA users DONDE age EN ESTO (18)"
     sql_result = translate(usql_query, direction='USQL_to_SQL')
     print(sql_result, "\n")  # SELECT * FROM users WHERE age IN (18)
 
     # Traducción de SQL a USQL
-    print("Traducción de SQL a USQL de la consulta 'SELECT * FROM users WHERE age IN (18)': \n")
+    print("Traducción de SQL a USQL de la consulta 'SELECT * FROM users WHERE age IN (18)':")
     sql_query = "SELECT * FROM users WHERE age IN (18)"
     usql_result = translate(sql_query, direction='SQL_to_USQL')
     print(usql_result) 
